@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastrar Pasteis</title>
+    <script>
+        function fnEnviar() {
+            var pastel = {
+                nome: document.getElementById("nome").value,
+                sabor: document.getElementById("sabor").value,
+                descricao: document.getElementById("descricao").value,
+                preco: document.getElementById("preco").value,
+                qtde: document.getElementById("qtde").value
+            };
+
+            console.log(pastel);
+        }
+
+    </script>
+</head>
+
+<body>
+    <section>
+        <h1>Cadastrar</h1>
+
+        <table>
+            <tr>
+                <td>
+                    <label>Nome:</label>
+                </td>
+                <td>
+                    <input type="text" id="nome">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Sabor:</label>
+                </td>
+                <td>
+                    <input type="text" id="sabor">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Descrição:</label>
+                </td>
+                <td>
+                    <input type="text" id="descricao">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Preço:</label>
+                </td>
+                <td>
+                    <input type="number" id="preco">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Qtde:</label>
+                </td>
+                <td>
+                    <input type="number" id="qtde">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="Enviar" id="btnEnviar" onclick="fnEnviar();">
+                </td>
+            </tr>
+        </table>
+    </section>
+</body>
+
+</html>
