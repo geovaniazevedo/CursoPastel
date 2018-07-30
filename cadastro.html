@@ -6,73 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cadastrar Pasteis</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
     <script>
         function fnEnviar() {
             var pastel = {
-                nome: document.getElementById("nome").value,
-                sabor: document.getElementById("sabor").value,
-                descricao: document.getElementById("descricao").value,
-                preco: document.getElementById("preco").value,
-                qtde: document.getElementById("qtde").value
+                nome: $("#nome").val(),
+                sabor: $("#sabor").val(),
+                descricao: $("#descricao").val(),
+                preco: $("#preco").val(),
+                qtde: $("#qtde").val()
             };
 
-            console.log(pastel);
+            $.ajax({
+                url: "https://talentosapipastel.herokuapp.com/pastel",
+                type: "POST",
+                data: JSON.stringify(pastel),
+                contentType: "application/json"
+            }).done(function (data) {
+                alert("Cadastrado com sucesso! :)");
+
+                $("#nome").val("");
+                $("#sabor").val("");
+                $("#descricao").val("");
+                $("#preco").val("");
+                $("#qtde").val("");
+            }).fail(function (returno) {
+                console.log(returno);
+                alert("Ocorreu um erro! Tente mais tarde! :(");
+            });
         }
 
     </script>
 </head>
 
-<body>
+<body class="container-fluid">
     <section>
-        <h1>Cadastrar</h1>
+        <div class="alert alert-warning" role="alert">
+            <h1>Cadastrar Pastel</h1>
+        </div>
 
-        <table>
-            <tr>
-                <td>
-                    <label>Nome:</label>
-                </td>
-                <td>
-                    <input type="text" id="nome">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Sabor:</label>
-                </td>
-                <td>
-                    <input type="text" id="sabor">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Descrição:</label>
-                </td>
-                <td>
-                    <input type="text" id="descricao">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Preço:</label>
-                </td>
-                <td>
-                    <input type="number" id="preco">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Qtde:</label>
-                </td>
-                <td>
-                    <input type="number" id="qtde">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="button" value="Enviar" id="btnEnviar" onclick="fnEnviar();">
-                </td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Insira aqui o nome do pastel">
+                </div>
+                <div class="form-group">
+                    <label for="sabor">Sabor:</label>
+                    <input type="text" class="form-control" id="sabor" placeholder="Insira aqui o sabor">
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" class="form-control" id="descricao" placeholder="Insira aqui a descrição">
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" class="form-control" placeholder="Insira aqui o preço">
+                </div>
+                <div class="form-group">
+                    <label for="qtde">Qtde:</label>
+                    <input type="number" id="qtde" class="form-control" placeholder="Insira aqui a quantidade">
+                </div>
+
+                <input type="button" class="btn btn-primary" value="Enviar" id="btnEnviar" onclick="fnEnviar();">
+            </div>
+        </div>
+
     </section>
 </body>
 
